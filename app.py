@@ -182,36 +182,36 @@ if selected_features:
 
     pca_X = pca_decomposition(st_data, labels)
 
+    st.markdown("The PCA scatter plot projects customers into a 2D space, colored by cluster. This helps visualize how distinct the clusters are based on the selected features.")
     with st.expander("Cluster Overview (PCA)", expanded=True):
-        st.markdown("The PCA scatter plot projects customers into a 2D space, colored by cluster. This helps visualize how distinct the clusters are based on the selected features.")
         pca_plot(pca_X)
 
+    st.markdown("This table shows the average values of key features for each cluster. It helps identify the dominant traits of each customer segment.")
     with st.expander("Cluster Summary Table", expanded=True):
-        st.markdown("This table shows the average values of key features for each cluster. It helps identify the dominant traits of each customer segment.")
         summary = cluster_summary(st_data, labels)
         st.dataframe(summary)
 
+    st.markdown("The bar and box plots below show how each selected feature varies across clusters. This helps interpret what differentiates the groups.")
     with st.expander("Feature Comparisons by Cluster"):
-        st.markdown("The bar and box plots below show how each selected feature varies across clusters. This helps interpret what differentiates the groups.")
         for feature in selected_features:
             st.markdown(f"**{feature}**")
             plot_cluster_bars(st_data, labels, feature)
             plot_boxplot(st_data, labels, feature)
 
+    st.markdown("Boxplots for income and recency help assess financial value and recent engagement across customer groups.")
     with st.expander("Distribution of Common Features"):
-        st.markdown("Boxplots for income and recency help assess financial value and recent engagement across customer groups.")
         for common_feature in ["Income", "Recency"]:
             if common_feature in st_data.columns:
                 st.markdown(f"**{common_feature}**")
                 plot_boxplot(st_data, labels, common_feature)
 
+    st.markdown("Pie charts show the most preferred product category within each cluster, giving insight into dominant buying behaviors.")
     if "Dominant_Category_Enc" in st_data.columns:
         with st.expander("Product Category Preference"):
-            st.markdown("Pie charts show the most preferred product category within each cluster, giving insight into dominant buying behaviors.")
             plot_dominant_category_pie(st_data, labels, "Dominant_Category_Enc")
 
     product_ratio_cols = [col for col in st_data.columns if col.endswith("_Ratio")]
     if product_ratio_cols:
+        st.markdown("Stacked bars show how each cluster allocates spending across product types, offering a breakdown of shopping priorities.")
         with st.expander("Product Spend Composition"):
-            st.markdown("Stacked bars show how each cluster allocates spending across product types, offering a breakdown of shopping priorities.")
             plot_stacked_bars(st_data, labels, product_ratio_cols[:5])
