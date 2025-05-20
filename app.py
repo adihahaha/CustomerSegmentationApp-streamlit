@@ -53,7 +53,7 @@ cluster_feature_options = {
     'Age':'Age', 'Income': 'Income', 'Family Size': 'Family_Size', 'Total Spending': 'Total_Spend', 'Total Number of Purchases': 'Total_Purchases', 'Customer Tenure': 'Customer_Tenure', 'Web Engagement': 'Web_Engagement', 'Average Spending': 'Avg_Spend_Per_Purchase', 'Catalog Engagement': 'Catalog_Engagement', 'Web Engaement' : 'Web_Engagement',
     'Store Engagement': 'Store_Engagement', 'Web Purchase Ratio': 'Web_Purchase_Ratio', 'Discount Effect': 'Discount_Effect', 'Total Campaigns Accepted': 'Total_Campaigns_Accepted', 'Accepted Last Campaign?': 'Response_Last_Campaign', 'Last Purchase' : 'Recency', 'Campaign Acceptance  Rate': 'Campaign_Acceptance_Rate',
     'Most Purchased Category': 'Dominant_Category_Enc', 'Average Spending on Wine': 'MntWines_Ratio', 'Average Spending on Fruits': 'MntFruits_Ratio', 'Average Spending on Meat': 'MntMeatProducts_Ratio', 'Average Spending on Fish': 'MntFishProducts_Ratio',
-    'Average Spending on Sweets': 'MntSweetProducts_Ratio', 'Average Spending on Gold': 'MntGoldProds_Ratio', 'Monthly Purchase Frequency': 'Purchase_Frequency_Monthly', 'Age Group': 'Age_Group_Enc', 'Marital Status': 'Marital_Status_Enc', 'Educational Qualification': 'Education_Enc'}
+    'Average Spending on Sweets': 'MntSweetProducts_Ratio', 'Average Spending on Gold': 'MntGoldProds_Ratio', 'Monthly Purchase Frequency': 'Purchase_Frequency_Monthly', 'Age Group': 'Age_Group_Enc', 'Marital Status': 'Marital_Status_Enc', 'Educational Qualification': 'Education_Enc', 'Purchase with discounts': 'NumDealsPurchases'}
 
 def pca_decomposition(X, labels):
     pca = sklearn.decomposition.PCA(n_components=2, random_state=SEED)
