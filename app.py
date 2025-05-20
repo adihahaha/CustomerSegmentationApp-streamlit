@@ -112,7 +112,7 @@ def plot_dominant_category_pie(df, labels, category_col):
         value_counts = cluster_data[category_col].value_counts()
 
         fig, ax = plt.subplots()
-        ax.pie(value_counts.values, labels=value_counts.index, autopct="%1.1f%%", startangle=90)
+        ax.pie(value_counts.values, labels=value_counts.index, autopct="%1.1f%%", startangle=90, pctdistance=0.9)
         ax.axis('equal')
         st.pyplot(fig)
         
