@@ -106,10 +106,12 @@ def plot_dominant_category_pie(df, labels, category_col):
         value_counts = cluster_data[category_col].value_counts()
 
         fig, ax = plt.subplots()
-        wedges, _, autotexts = ax.pie(value_counts.values, labels=value_counts.index, autopct="%1.1f%%", startangle=90, textprops={'fontsize': 10})
+        wedges, _ = ax.pie(value_counts.values, labels=None, startangle=90, textprops={'fontsize': 10})
 
-        ax.legend(wedges, value_counts.index, title="Categories",loc="center left", bbox_to_anchor=(1, 0.5), fontsize=10, title_fontsize=11)
-        ax.axis('equal')
+        percentages = 100 * value_counts.values / value_counts.values.sum()
+        legend_labels = [f"{cat}: {pct:.1f}%" for cat, pct in zip(value_counts.index, percentages)]
+        ax.legend(wedges, legend_labels, title="Categories", loc="center left", bbox_to_anchor=(1, 0.5), fontsize=10, title_fontsize=11)
+        ax.axis("equal")
         st.pyplot(fig)
 
 def plot_stacked_bars(df, labels, columns, title="Product Ratios by Cluster"):
