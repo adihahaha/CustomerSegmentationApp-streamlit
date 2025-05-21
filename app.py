@@ -176,7 +176,6 @@ if selected_features:
     model, labels = segmentation_model(X, n_clusters=n_clusters, algorithm=algorithm)
     st_data["Clusters"] = labels
 
-    print(st_data.columns.tolist()) 
     pca_X = pca_decomposition(st_data.drop(['Age_Group', 'Dominant_Category'], axis=1), labels)
 
     with st.expander("Cluster Overview (PCA)", expanded=True):
