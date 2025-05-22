@@ -176,9 +176,8 @@ if not selected_features:
 if selected_features:
     X = st_data_scaled[selected_features]
     model, labels = segmentation_model(X, n_clusters=n_clusters, algorithm=algorithm)
-    st_data["Clusters"] = labels
 
-    pca_X = pca_decomposition(X, labels)
+    pca_X = pca_decomposition(st_data.drop(['Age_Group', 'Dominant_Category'], axis=1), labels)
 
     with st.expander("Cluster Overview (PCA)", expanded=True):
         st.markdown("The PCA scatter plot projects customers into a 2D space, colored by cluster. This helps visualize how distinct the clusters are based on the selected features.")
@@ -186,8 +185,10 @@ if selected_features:
 
     with st.expander("Cluster Summary Table", expanded=True):
         st.markdown("This table shows the average values of key features for each cluster. It helps identify the dominant traits of each customer segment.")
-        summary = cluster_summary(st_data.drop(['Age_Group', 'Dominant_Category'], axis=1), labels)
+        summary = cluster_summary(st_data, labels)
         st.dataframe(summary)
+
+    st_data["Clusters"] = labels
 
     with st.expander("Feature Comparisons by Cluster"):
         st.markdown("The bar and box plots below show how each selected feature varies across clusters. This helps interpret what differentiates the groups.")
