@@ -185,7 +185,7 @@ if selected_features:
 
     with st.expander("Cluster Summary Table", expanded=True):
         st.markdown("This table shows the average values of key features for each cluster. It helps identify the dominant traits of each customer segment.")
-        summary = cluster_summary(st_data, labels)
+        summary = cluster_summary(st_data.drop(['Age_Group', 'Dominant_Category'], axis=1), labels)
         st.dataframe(summary)
 
     st_data["Clusters"] = labels
