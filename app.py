@@ -177,7 +177,7 @@ if selected_features:
     X = st_data_scaled[selected_features]
     model, labels = segmentation_model(X, n_clusters=n_clusters, algorithm=algorithm)
 
-    pca_X = pca_decomposition(st_data_scaled, labels)
+    pca_X = pca_decomposition(st_data_scaled.drop(['Age_Group', 'Dominant_Category'], labels)
 
     with st.expander("Cluster Overview (PCA)", expanded=True):
         st.markdown("The PCA scatter plot projects customers into a 2D space, colored by cluster. This helps visualize how distinct the clusters are based on the selected features.")
